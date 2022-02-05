@@ -17,6 +17,8 @@ defmodule HackerNewsAggregatorWeb do
   and import those modules here.
   """
 
+  use Boundary, deps: [HackerNewsAggregator], exports: [Endpoint]
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: HackerNewsAggregatorWeb
