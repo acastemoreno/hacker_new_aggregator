@@ -3,6 +3,7 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
 
   use GenServer
   alias HackerNewsAggregator.Aggregator.Stories
+  alias Phoenix.PubSub
 
   ## Public functions
   ####
@@ -40,6 +41,9 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
     stories_id = Stories.fetch_topstories()
       |> Enum.take(50)
     Logger.info("Got Hacker News top stories")
+
+    PubSub.broadcast(HackerNewsAggregator.PubSub, "topstories", {:topstories_refreshed, stories_id})
+
     Process.send_after(self(), :refresh_topstories, @scheduled_interval)
     stories_id
   end
