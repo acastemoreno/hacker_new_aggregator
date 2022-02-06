@@ -43,6 +43,7 @@ defmodule HackerNewsAggregator.MixProject do
       {:boundary, "~> 0.9", runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:httpoison, "~> 1.8"}
     ]
   end
 

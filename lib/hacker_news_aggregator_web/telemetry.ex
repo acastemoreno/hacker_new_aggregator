@@ -1,4 +1,8 @@
 defmodule HackerNewsAggregatorWeb.Telemetry do
+  @moduledoc """
+  Telemetry module for application
+  """
+
   use Supervisor
   import Telemetry.Metrics
 
