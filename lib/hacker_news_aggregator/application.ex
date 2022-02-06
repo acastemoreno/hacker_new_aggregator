@@ -17,7 +17,7 @@ defmodule HackerNewsAggregator.Application do
       HackerNewsAggregatorWeb.Endpoint,
       # Start a worker by calling: HackerNewsAggregator.Worker.start_link(arg)
       # {HackerNewsAggregator.Worker, arg},
-      HackerNewsAggregator.Aggregator
+      HackerNewsAggregator.Aggregator.Lifecycle
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

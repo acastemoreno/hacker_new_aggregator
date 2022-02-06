@@ -1,7 +1,4 @@
 defmodule HackerNewsAggregator.Aggregator.Stories do
-  @moduledoc """
-  Module responsable to collect Hacker News Stories
-  """
   require Logger
 
   @baseUrl "https://hacker-news.firebaseio.com/v0"
