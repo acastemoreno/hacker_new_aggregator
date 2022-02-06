@@ -10,7 +10,7 @@ defmodule HackerNewsAggregator.Aggregator do
       |> apply_action(:create)
   end
   def get_topstories(%Pagination{page: page, per_page: per_page}) do
-    start_index = (page-1)*per_page
+    start_index = (page - 1) * per_page
 
     GenServer.call(Lifecycle, :get_topstories)
       |> Enum.slice(start_index, per_page)

@@ -7,7 +7,7 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
   ## Public functions
   ####
 
-  @scheduled_interval 1000*60*5 #miliseconds
+  @scheduled_interval 1000 * 60 * 5 #miliseconds
 
   def start_link(_status) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
