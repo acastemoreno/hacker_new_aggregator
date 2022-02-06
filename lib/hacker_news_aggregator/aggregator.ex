@@ -3,29 +3,52 @@ defmodule HackerNewsAggregator.Aggregator do
   Single point of contact display Hacker News Stories.
   Also responsable to manage aggregator life cycle
   """
+  require Logger
 
   use GenServer
   alias HackerNewsAggregator.Aggregator.Stories
 
-  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+  ## Public functions
+  ####
+
+  @scheduled_interval 1000*60*5 #miliseconds
+
+  def start_link(_status) do
+    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
+  end
+
+  def get_topstories() do
+    GenServer.call(__MODULE__, :get_topstories)
+  end
+
+  ## GenServer implementation
+  ####
+
+  @impl true
+  def init(_status) do
+    {:ok, fetch_topstories_and_schedule_work()}
   end
 
   @impl true
-  @spec init(list) :: {:ok, list(integer)}
-  def init(status) do
-    {:ok, status}
-  end
-
-  @impl true
-  def handle_cast(:refresh_topstories, _state) do
-    stories_id = Stories.fetch_top_stories()
+  def handle_info(:refresh_topstories, _state) do
+    stories_id = fetch_topstories_and_schedule_work()
     {:noreply, stories_id}
   end
 
   @impl true
-  def handle_call(:get_stories, _from, stories_id) do
+  def handle_call(:get_topstories, _from, stories_id) do
     {:reply, stories_id, stories_id}
+  end
+
+  ## Helper functions
+  ####
+
+  @spec fetch_topstories_and_schedule_work :: list(integer())
+  defp fetch_topstories_and_schedule_work() do
+    stories_id = Stories.fetch_topstories()
+      |> Enum.take(50)
+    Logger.info("Got Hacker News top stories")
+    Process.send_after(self(), :refresh_topstories, @scheduled_interval)
+    stories_id
   end
 end

@@ -16,7 +16,7 @@ defmodule HackerNewsAggregator.Application do
       # Start the Endpoint (http/https)
       HackerNewsAggregatorWeb.Endpoint,
       # Start a worker by calling: HackerNewsAggregator.Worker.start_link(arg)
-      # {HackerNewsAggregator.Worker, arg}
+      # {HackerNewsAggregator.Worker, arg},
       HackerNewsAggregator.Aggregator
     ]
 
