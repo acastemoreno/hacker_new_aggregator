@@ -1,4 +1,3 @@
-
 defmodule HackerNewsAggregatorWeb.TopStoriesChannel do
   use HackerNewsAggregatorWeb, :channel
 

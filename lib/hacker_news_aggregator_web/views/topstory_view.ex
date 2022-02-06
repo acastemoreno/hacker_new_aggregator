@@ -8,7 +8,7 @@ defmodule HackerNewsAggregatorWeb.TopstoryView do
 
   def render("topstory.json", %{topstory: topstory}) do
     %{
-      id: topstory,
+      id: topstory
     }
   end
 end

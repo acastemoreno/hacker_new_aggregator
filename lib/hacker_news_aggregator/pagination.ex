@@ -3,8 +3,8 @@ defmodule HackerNewsAggregator.Pagination do
   import Ecto.Changeset
 
   embedded_schema do
-    field :page, :integer, default: 1
-    field :per_page, :integer, default: 10
+    field(:page, :integer, default: 1)
+    field(:per_page, :integer, default: 10)
   end
 
   def changeset(pagination, attrs) do

@@ -7,5 +7,4 @@ defmodule HackerNewsAggregator do
   if it comes from the database, an external API or others.
   """
   use Boundary, deps: [], exports: [Aggregator]
-
 end

@@ -8,7 +8,8 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
   ## Public functions
   ####
 
-  @scheduled_interval 1000 * 60 * 5 #miliseconds
+  # miliseconds
+  @scheduled_interval 1000 * 60 * 5
 
   def start_link(_status) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
@@ -38,11 +39,17 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
 
   @spec fetch_topstories_and_schedule_work :: list(integer())
   defp fetch_topstories_and_schedule_work() do
-    stories_id = Stories.fetch_topstories()
+    stories_id =
+      Stories.fetch_topstories()
       |> Enum.take(50)
+
     Logger.info("Got Hacker News top stories")
 
-    PubSub.broadcast(HackerNewsAggregator.PubSub, "topstories", {:topstories_refreshed, stories_id})
+    PubSub.broadcast(
+      HackerNewsAggregator.PubSub,
+      "topstories",
+      {:topstories_refreshed, stories_id}
+    )
 
     Process.send_after(self(), :refresh_topstories, @scheduled_interval)
     stories_id
