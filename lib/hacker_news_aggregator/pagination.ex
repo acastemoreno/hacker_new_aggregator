@@ -5,12 +5,16 @@ defmodule HackerNewsAggregator.Pagination do
 
   use Ecto.Schema
   import Ecto.Changeset
+  alias HackerNewsAggregator.Pagination
+
+  @type t :: %Pagination{page: integer, per_page: integer}
 
   embedded_schema do
     field(:page, :integer, default: 1)
     field(:per_page, :integer, default: 10)
   end
 
+  @spec changeset(Pagination.t(), map()) :: Ecto.Changeset.t()
   def changeset(pagination, attrs) do
     pagination
     |> cast(attrs, [:page, :per_page])

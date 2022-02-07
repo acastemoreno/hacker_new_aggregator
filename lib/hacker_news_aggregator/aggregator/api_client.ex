@@ -15,6 +15,7 @@ defmodule HackerNewsAggregator.Aggregator.ApiClient do
     Jason.decode!(body)
   end
 
+  @spec get_story!(integer()) :: map()
   def get_story!(id) do
     %HTTPoison.Response{status_code: 200, body: body} =
       HTTPoison.get!("#{@base_url}/item/#{id}.json")

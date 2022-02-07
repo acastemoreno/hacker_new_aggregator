@@ -13,6 +13,7 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
 
   @scheduled_interval Application.compile_env!(:hacker_news_aggregator, [__MODULE__, :scheduled_interval])
 
+  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
   def start_link(_status) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
@@ -21,6 +22,7 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   ####
 
   @impl true
+  @spec init(any) :: {:ok, list()}
   def init(_status) do
     {:ok, fetch_topstories_and_schedule_work()}
   end
@@ -39,6 +41,7 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   ## Helper functions
   ####
 
+  @spec fetch_topstories_and_schedule_work() :: list(integer())
   defp fetch_topstories_and_schedule_work() do
     stories_ids = fetch_topstories()
 
@@ -51,10 +54,12 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
     stories_ids
   end
 
+  @spec fetch_topstories() :: list(integer())
   defp fetch_topstories() do
     ApiClient.fetch_topstories() |> Enum.take(50)
   end
 
+  @spec broadcast_topstories(list(integer())) :: :ok | {:error, term()}
   defp broadcast_topstories(stories_ids) do
     PubSub.broadcast(
       HackerNewsAggregator.PubSub,
@@ -63,6 +68,7 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
     )
   end
 
+  @spec schedule_next_fetch() :: reference()
   defp schedule_next_fetch() do
     Process.send_after(self(), :refresh_topstories, @scheduled_interval)
   end
