@@ -1,0 +1,15 @@
+_build/
+deps/
+.git/
+.gitignore
+Dockerfile
+Makefile
+README*
+test/
+priv/static/
+docker-compose.yml
+.dockerignore
+cover/
+/.elixir_ls
+
+/.idea

@@ -22,3 +22,7 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 hacker_news_aggregator-*.tar
 
+# Ignore digested assets cache.
+/priv/static/cache_manifest.json
+
+docker.env

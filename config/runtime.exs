@@ -25,11 +25,16 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
-  port = String.to_integer(System.get_env("PORT") || "4000")
+  host = System.get_env("PHX_HOST") || "localhost"
+  port_text = System.get_env("PORT") ||
+      raise """
+      environment variable PORT is missing.
+      You need to set one. On docker review config/docker.env
+      """
+  port = String.to_integer(port_text)
 
   config :hacker_news_aggregator, HackerNewsAggregatorWeb.Endpoint,
-    url: [host: host, port: 443],
+    url: [host: host, port: port],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
