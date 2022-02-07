@@ -11,6 +11,7 @@ defmodule HackerNewsAggregator.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
       releases: [
         hacker_news_aggregator: [
           include_executables_for: [:unix],
@@ -53,7 +54,8 @@ defmodule HackerNewsAggregator.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:httpoison, "~> 1.8"},
-      {:ecto, "~> 3.7.1"}
+      {:ecto, "~> 3.7.1"},
+      {:excoveralls, "~> 0.14.4", only: :test}
     ]
   end
 
