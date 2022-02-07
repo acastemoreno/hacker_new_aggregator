@@ -1,6 +1,9 @@
 defmodule HackerNewsAggregator.Aggregator.TopStories do
-  require Logger
+  @moduledoc """
+  Manage periodic scheduled fetch of Hacker News Top Stories
+  """
 
+  require Logger
   use GenServer
   alias HackerNewsAggregator.Aggregator.ApiClient
   alias Phoenix.PubSub
@@ -8,9 +11,7 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   ## Public functions
   ####
 
-  @scheduled_interval Application.get_env(:hacker_news_aggregator, __MODULE__)[
-                        :scheduled_interval
-                      ]
+  @scheduled_interval Application.compile_env!(:hacker_news_aggregator, [__MODULE__, :scheduled_interval])
 
   def start_link(_status) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)

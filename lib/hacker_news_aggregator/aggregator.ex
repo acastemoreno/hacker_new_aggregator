@@ -1,4 +1,8 @@
 defmodule HackerNewsAggregator.Aggregator do
+  @moduledoc """
+  Single point of contact to fetch Hacker News stories
+  """
+
   alias HackerNewsAggregator.Pagination
   alias HackerNewsAggregator.Aggregator.{TopStories, ApiClient}
 

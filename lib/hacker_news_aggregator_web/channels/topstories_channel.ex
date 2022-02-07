@@ -1,4 +1,7 @@
 defmodule HackerNewsAggregatorWeb.TopStoriesChannel do
+  @moduledoc """
+  Channel to subscribe to Hacker News top stories topic
+  """
   use HackerNewsAggregatorWeb, :channel
 
   @impl true

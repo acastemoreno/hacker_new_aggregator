@@ -1,4 +1,8 @@
 defmodule HackerNewsAggregator.Pagination do
+  @moduledoc """
+  Embedded schema to validate, parse, and set default parameters for pagination
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
