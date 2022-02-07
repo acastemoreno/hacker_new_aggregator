@@ -26,11 +26,14 @@ if config_env() == :prod do
       """
 
   host = System.get_env("PHX_HOST") || "localhost"
-  port_text = System.get_env("PORT") ||
+
+  port_text =
+    System.get_env("PORT") ||
       raise """
       environment variable PORT is missing.
       You need to set one. On docker review config/docker.env
       """
+
   port = String.to_integer(port_text)
 
   config :hacker_news_aggregator, HackerNewsAggregatorWeb.Endpoint,

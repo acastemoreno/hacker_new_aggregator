@@ -55,7 +55,8 @@ defmodule HackerNewsAggregator.MixProject do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:httpoison, "~> 1.8"},
       {:ecto, "~> 3.7.1"},
-      {:excoveralls, "~> 0.14.4", only: :test}
+      {:excoveralls, "~> 0.14.4", only: :test},
+      {:exvcr, "~> 0.11", only: :test}
     ]
   end
 

@@ -1,0 +1,28 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://hacker-news.firebaseio.com/v0/item/30228327.json"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"by\":\"jseliger\",\"descendants\":11,\"id\":30228327,\"kids\":[30241219,30241193,30241014,30241280,30240629,30240757,30240968],\"score\":64,\"time\":1644110934,\"title\":\"How Japan saved Tokyo's rail network from collapse (part 1, 1945-1982)\",\"type\":\"story\",\"url\":\"https://seungylee14.substack.com/p/how-japan-saved-tokyos-rail-network\"}",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 07 Feb 2022 07:11:20 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "324",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "no-cache",
+        "Strict-Transport-Security": "max-age=31556926; includeSubDomains; preload"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -11,7 +11,10 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   ## Public functions
   ####
 
-  @scheduled_interval Application.compile_env!(:hacker_news_aggregator, [__MODULE__, :scheduled_interval])
+  @scheduled_interval Application.compile_env!(:hacker_news_aggregator, [
+                        __MODULE__,
+                        :scheduled_interval
+                      ])
 
   @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
   def start_link(_status) do
