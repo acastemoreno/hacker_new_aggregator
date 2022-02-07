@@ -48,3 +48,6 @@ config :logger, level: :info
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
+
+config :hacker_news_aggregator, HackerNewsAggregator.Aggregator.TopStories,
+  scheduled_interval: 1000 * 60 * 5

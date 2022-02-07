@@ -12,3 +12,6 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :hacker_news_aggregator, HackerNewsAggregator.Aggregator.TopStories,
+  scheduled_interval: 1000 * 10

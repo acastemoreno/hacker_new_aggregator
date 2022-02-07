@@ -15,7 +15,7 @@ defmodule HackerNewsAggregator.Application do
       {Phoenix.PubSub, name: HackerNewsAggregator.PubSub},
       HackerNewsAggregator.Aggregator.TopStories,
       # Start the Endpoint (http/https)
-      HackerNewsAggregatorWeb.Endpoint,
+      HackerNewsAggregatorWeb.Endpoint
       # Start a worker by calling: HackerNewsAggregator.Worker.start_link(arg)
       # {HackerNewsAggregator.Worker, arg},
     ]

@@ -1,7 +1,7 @@
 defmodule HackerNewsAggregator.Aggregator.ApiClient do
   require Logger
 
-  @base_url "https://hacker-news.firebaseio.com/v0"
+  @base_url Application.get_env(:hacker_news_aggregator, __MODULE__)[:hacker_news_base_url]
 
   @spec fetch_topstories :: list(integer())
   def fetch_topstories() do

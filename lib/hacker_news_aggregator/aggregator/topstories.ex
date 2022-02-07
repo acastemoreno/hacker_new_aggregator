@@ -8,7 +8,9 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   ## Public functions
   ####
 
-  @scheduled_interval 1000 * 60 * 5
+  @scheduled_interval Application.get_env(:hacker_news_aggregator, __MODULE__)[
+                        :scheduled_interval
+                      ]
 
   def start_link(_status) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
@@ -51,7 +53,6 @@ defmodule HackerNewsAggregator.Aggregator.TopStories do
   defp fetch_topstories() do
     ApiClient.fetch_topstories() |> Enum.take(50)
   end
-
 
   defp broadcast_topstories(stories_ids) do
     PubSub.broadcast(
