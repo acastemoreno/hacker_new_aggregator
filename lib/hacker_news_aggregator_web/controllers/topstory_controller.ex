@@ -11,4 +11,9 @@ defmodule HackerNewsAggregatorWeb.TopstoryController do
       render(conn, "index.json", topstories: topstories)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    story = Aggregator.get_story!(id)
+    render(conn, "show.json", story: story)
+  end
 end

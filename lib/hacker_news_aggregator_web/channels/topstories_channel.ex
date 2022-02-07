@@ -7,7 +7,7 @@ defmodule HackerNewsAggregatorWeb.TopStoriesChannel do
   end
 
   @doc """
-  Handle pub/sub message sended by HackerNewsAggregator.Aggregator.Lifecycle
+  Handle pub/sub message sended by HackerNewsAggregator.Aggregator.TopStories
   """
   @impl true
   def handle_info({:topstories_refreshed, stories_id}, socket) do

@@ -1,14 +1,13 @@
-defmodule HackerNewsAggregator.Aggregator.Lifecycle do
+defmodule HackerNewsAggregator.Aggregator.TopStories do
   require Logger
 
   use GenServer
-  alias HackerNewsAggregator.Aggregator.Stories
+  alias HackerNewsAggregator.Aggregator.ApiClient
   alias Phoenix.PubSub
 
   ## Public functions
   ####
 
-  # miliseconds
   @scheduled_interval 1000 * 60 * 5
 
   def start_link(_status) do
@@ -37,21 +36,32 @@ defmodule HackerNewsAggregator.Aggregator.Lifecycle do
   ## Helper functions
   ####
 
-  @spec fetch_topstories_and_schedule_work :: list(integer())
   defp fetch_topstories_and_schedule_work() do
-    stories_id =
-      Stories.fetch_topstories()
-      |> Enum.take(50)
+    stories_ids = fetch_topstories()
 
     Logger.info("Got Hacker News top stories")
 
+    broadcast_topstories(stories_ids)
+
+    schedule_next_fetch()
+
+    stories_ids
+  end
+
+  defp fetch_topstories() do
+    ApiClient.fetch_topstories() |> Enum.take(50)
+  end
+
+
+  defp broadcast_topstories(stories_ids) do
     PubSub.broadcast(
       HackerNewsAggregator.PubSub,
       "topstories",
-      {:topstories_refreshed, stories_id}
+      {:topstories_refreshed, stories_ids}
     )
+  end
 
+  defp schedule_next_fetch() do
     Process.send_after(self(), :refresh_topstories, @scheduled_interval)
-    stories_id
   end
 end

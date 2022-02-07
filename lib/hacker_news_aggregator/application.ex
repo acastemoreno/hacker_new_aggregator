@@ -13,11 +13,11 @@ defmodule HackerNewsAggregator.Application do
       HackerNewsAggregatorWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: HackerNewsAggregator.PubSub},
+      HackerNewsAggregator.Aggregator.TopStories,
       # Start the Endpoint (http/https)
       HackerNewsAggregatorWeb.Endpoint,
       # Start a worker by calling: HackerNewsAggregator.Worker.start_link(arg)
       # {HackerNewsAggregator.Worker, arg},
-      HackerNewsAggregator.Aggregator.Lifecycle
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

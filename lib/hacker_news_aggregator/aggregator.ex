@@ -1,6 +1,6 @@
 defmodule HackerNewsAggregator.Aggregator do
   alias HackerNewsAggregator.Pagination
-  alias HackerNewsAggregator.Aggregator.Lifecycle
+  alias HackerNewsAggregator.Aggregator.{TopStories, ApiClient}
 
   import Ecto.Changeset
 
@@ -13,7 +13,11 @@ defmodule HackerNewsAggregator.Aggregator do
   def get_topstories(%Pagination{page: page, per_page: per_page}) do
     start_index = (page - 1) * per_page
 
-    GenServer.call(Lifecycle, :get_topstories)
+    GenServer.call(TopStories, :get_topstories)
     |> Enum.slice(start_index, per_page)
+  end
+
+  def get_story!(id) do
+    ApiClient.get_story!(id)
   end
 end

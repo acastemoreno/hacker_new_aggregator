@@ -1,4 +1,4 @@
-defmodule HackerNewsAggregator.Aggregator.Stories do
+defmodule HackerNewsAggregator.Aggregator.ApiClient do
   require Logger
 
   @base_url "https://hacker-news.firebaseio.com/v0"
@@ -7,6 +7,13 @@ defmodule HackerNewsAggregator.Aggregator.Stories do
   def fetch_topstories() do
     %HTTPoison.Response{status_code: 200, body: body} =
       HTTPoison.get!("#{@base_url}/topstories.json")
+
+    Jason.decode!(body)
+  end
+
+  def get_story!(id) do
+    %HTTPoison.Response{status_code: 200, body: body} =
+      HTTPoison.get!("#{@base_url}/item/#{id}.json")
 
     Jason.decode!(body)
   end
