@@ -19,7 +19,7 @@ defmodule HackerNewsAggregatorWeb.TopStoriesChannelTest do
     Phoenix.PubSub.broadcast(
       HackerNewsAggregator.PubSub,
       "topstories",
-      {:topstories_refreshed, [1,5,3]}
+      {:topstories_refreshed, [1, 5, 3]}
     )
 
     assert_broadcast "topstories_refreshed", %{data: [%{id: 1}, %{id: 5}, %{id: 3}]}

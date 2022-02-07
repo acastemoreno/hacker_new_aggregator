@@ -1,1 +1,0 @@
-call "%~dp0\hacker_news_aggregator" eval HackerNewsAggregator.Release.migrate
